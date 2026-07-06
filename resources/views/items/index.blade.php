@@ -14,13 +14,16 @@
 
         <div class="card-header bg-primary text-white">
 
-    <h5 class="mb-1">NJAWA Tech Solutions</h5>
+            <h5 class="mb-0 fw-light">
+                NJAWA Tech Solutions
+            </h5>
 
-    <h2 class="fw-bold">
-        📦 Inventory Management System
-    </h2>
+            <h2 class="fw-bold mt-2">
+                📦 Inventory Management System
+            </h2>
 
-</div>
+            <small>Version 1.0</small>
+
         </div>
 
         <div class="card-body">
@@ -33,12 +36,12 @@
 
                 <thead class="table-dark">
 
-                <tr>
-                    <th>Item</th>
-                    <th>Description</th>
-                    <th>Price (KES)</th>
-                    <th width="180">Action</th>
-                </tr>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Price (KES)</th>
+                        <th width="180">Action</th>
+                    </tr>
 
                 </thead>
 
@@ -46,52 +49,52 @@
 
                 @forelse($items as $item)
 
-                <tr>
+                    <tr>
 
-                    <td>{{ $item->item }}</td>
+                        <td>{{ $item->item }}</td>
 
-                    <td>{{ $item->description }}</td>
+                        <td>{{ $item->description }}</td>
 
-                    <td>{{ number_format($item->price,2) }}</td>
+                        <td>KES {{ number_format($item->price,2) }}</td>
 
-                    <td>
+                        <td>
 
-                        <a href="/items/{{ $item->id }}/edit"
-                           class="btn btn-warning btn-sm">
-                            Edit
-                        </a>
+                            <a href="/items/{{ $item->id }}/edit"
+                               class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
 
-                        <form action="/items/{{ $item->id }}"
-                              method="POST"
-                              style="display:inline;">
+                            <form action="/items/{{ $item->id }}"
+                                  method="POST"
+                                  style="display:inline;">
 
-                            @csrf
-                            @method('DELETE')
+                                @csrf
+                                @method('DELETE')
 
-                            <button class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Delete this item?')">
+                                <button class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Delete this item?')">
 
-                                Delete
+                                    Delete
 
-                            </button>
+                                </button>
 
-                        </form>
+                            </form>
 
-                    </td>
+                        </td>
 
-                </tr>
+                    </tr>
 
                 @empty
 
-                <tr>
+                    <tr>
 
-                    <td colspan="4" class="text-center">
+                        <td colspan="4" class="text-center text-muted">
 
-                        No items found.
+                            No items found.
 
-                    </td>
+                        </td>
 
-                </tr>
+                    </tr>
 
                 @endforelse
 
@@ -104,10 +107,53 @@
     </div>
 
 </div>
-<footer class="text-center mt-5 text-muted">
+
+<footer class="text-center mt-5 text-muted mb-4">
+
     <hr>
-    <p><strong>Developed by Purity Ndung'u😁😁</strong></p>
-    <p>© 2026 IMS | Laravel CRUD project </p>
+
+    <p class="mb-1">
+        <strong>Developed by Purity Ndung'u</strong>
+    </p>
+
+    <small>
+        © 2026 IMS | Laravel CRUD Project
+    </small>
+
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('success'))
+
+<script>
+
+Swal.fire({
+
+    toast: true,
+    position: 'top-end',
+
+    icon: 'success',
+
+    title: '{{ session('success') }}',
+
+    showConfirmButton: false,
+
+    timer: 2500,
+
+    timerProgressBar: true,
+
+    background: '#198754',
+
+    color: '#fff',
+
+    iconColor: '#fff'
+
+});
+
+</script>
+
+@endif
+
 </body>
 </html>
