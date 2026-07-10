@@ -5,7 +5,7 @@ use App\Http\Controllers\PurityController;
 use App\Http\Controllers\ItemController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/purity', [PurityController::class, 'index']);
